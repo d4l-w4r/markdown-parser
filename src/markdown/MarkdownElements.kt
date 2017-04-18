@@ -11,5 +11,6 @@ enum class MarkdownElements(val regex: Regex, val replacement: String, val delim
 
     companion object {
         fun toList(): List<MarkdownElements> = listOf(H2, H1, UL, ITALIC, BOLD, QUOTE, BREAK)
+        fun getSymetricSymbols(): List<MarkdownElements> = listOf(ITALIC, BOLD)
     }
 }
