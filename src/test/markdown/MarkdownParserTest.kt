@@ -2,10 +2,10 @@ package test.markdown
 
 import junit.framework.TestCase.assertEquals
 import markdown.MarkdownElements
-import markdown.Tokenizer
+import markdown.MarkdownParser
 import org.junit.Test
 
-class TokenizerTest {
+class MarkdownParserTest {
 
 
     @Test
@@ -14,7 +14,7 @@ class TokenizerTest {
         val testString = "This is not a #Header Test."
         val expectedString = "This is not a #Header Test.%BREAK%"
         val expectedNumberOfTokens = 1
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -34,7 +34,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 3
         val expectedTokenTypes = listOf(MarkdownElements.H1, MarkdownElements.BREAK, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(0, 16, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -59,7 +59,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 3
         val expectedTokenTypes = listOf(MarkdownElements.H2, MarkdownElements.BREAK, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(0, 24, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -82,7 +82,7 @@ class TokenizerTest {
         val testString = "This is not a ##Subheader."
         val expectedString = "This is not a ##Subheader.%BREAK%"
         val expectedNumberOfTokens = 1
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -103,7 +103,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 3
         val expectedTokenTypes = listOf(MarkdownElements.BOLD, MarkdownElements.BOLD, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(28, 35, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -128,7 +128,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 3
         val expectedTokenTypes = listOf(MarkdownElements.ITALIC, MarkdownElements.ITALIC, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(20, 31, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -153,7 +153,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 3
         val expectedTokenTypes = listOf(MarkdownElements.ITALIC, MarkdownElements.ITALIC, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(20, 72, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -178,7 +178,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 5
         val expectedTokenTypes = listOf(MarkdownElements.ITALIC, MarkdownElements.BOLD, MarkdownElements.BOLD, MarkdownElements.ITALIC, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(20, 36, 57, 78, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -201,7 +201,7 @@ class TokenizerTest {
         val testString = "This is > not a quote."
         val expectedString = "This is > not a quote.%BREAK%"
         val expectedNumberOfTokens = 1
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -221,7 +221,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 3
         val expectedTokenTypes = listOf(MarkdownElements.QUOTE, MarkdownElements.BREAK, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(0, 15, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -246,7 +246,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 3
         val expectedTokenTypes = listOf(MarkdownElements.QUOTE, MarkdownElements.BREAK, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(0, 16, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
         // when
         val result = testee.tokenize(testString)
@@ -272,7 +272,7 @@ class TokenizerTest {
         val expectedNumberOfTokens = 10
         val expectedTokenTypes = listOf(MarkdownElements.H1, MarkdownElements.BREAK, MarkdownElements.BREAK, MarkdownElements.H2, MarkdownElements.BREAK, MarkdownElements.BOLD, MarkdownElements.BOLD, MarkdownElements.ITALIC, MarkdownElements.ITALIC, MarkdownElements.BREAK)
         val expectedTokenIndices = listOf(0, 41, 48, 55, 100, 163, 180, 189, 209, 213, expectedString.length - MarkdownElements.BREAK.replacement.length)
-        val testee = Tokenizer()
+        val testee = MarkdownParser()
 
 
         // when

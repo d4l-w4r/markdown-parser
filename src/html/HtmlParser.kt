@@ -1,7 +1,7 @@
 package html
 
 import markdown.MarkdownElements
-import markdown.Token
+import markdown.MarkdownToken
 
 
 class HtmlParser {
@@ -13,21 +13,21 @@ class HtmlParser {
      *
      * @return A list of tokens that is guaranteed to have an even number of symetric tokens
      */
-    fun dropDanglingSymetricTags(tokens: List<Token>): List<Token> {
+    fun dropDanglingSymetricTags(tokens: List<MarkdownToken>): List<MarkdownToken> {
         return tokens.minus(findDanglingTags(tokens))
     }
 
-    private fun findDanglingTags(collection: List<Token>): List<Token> {
+    private fun findDanglingTags(collection: List<MarkdownToken>): List<MarkdownToken> {
         return MarkdownElements.getSymetricSymbols()
                 .map { elementType -> getDanglingTag(collection, elementType) }
                 .filterNotNull()
     }
 
-    private fun getDanglingTag(collection: List<Token>, elementType: MarkdownElements): Token? {
+    private fun getDanglingTag(collection: List<MarkdownToken>, elementType: MarkdownElements): MarkdownToken? {
         return collection.findLast { hasOddCount(collection, elementType) && it.element == elementType }
     }
 
-    private fun hasOddCount(collection: List<Token>, elementType: MarkdownElements): Boolean {
+    private fun hasOddCount(collection: List<MarkdownToken>, elementType: MarkdownElements): Boolean {
         return collection.filter { it.element == elementType }.size % 2 != 0
     }
 }

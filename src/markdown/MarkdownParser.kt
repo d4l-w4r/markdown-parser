@@ -1,6 +1,6 @@
 package markdown
 
-class Tokenizer {
+class MarkdownParser {
 
     /**
      * For each supported markdown element specified in [MarkdownElements]
@@ -9,7 +9,7 @@ class Tokenizer {
      *
      * @return A [Pair] containing the transformed string and a list of matched tokens
      */
-    fun tokenize(rawString: String): Pair<String, List<Token>> {
+    fun tokenize(rawString: String): Pair<String, List<MarkdownToken>> {
         val tokenizedString = replaceWithTokens(rawString)
         val tokens = MarkdownElements.toList()
                 .flatMap { element -> findMatches(element, tokenizedString).toList() }
@@ -27,9 +27,9 @@ class Tokenizer {
         return tokenizedString
     }
 
-    private fun findMatches(element: MarkdownElements, string: String): Sequence<Token> {
+    private fun findMatches(element: MarkdownElements, string: String): Sequence<MarkdownToken> {
         return element.replacement.toRegex()
                 .findAll(string)
-                .map { match -> Token(element, match.range.first) }
+                .map { match -> MarkdownToken(element, match.range.first) }
     }
 }
